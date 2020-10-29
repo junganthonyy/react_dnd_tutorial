@@ -1,13 +1,14 @@
-import Knight from './components/Knight';
-import Square from './components/Square';
-import './App.css';
+import Board from './components/Board';
 
 function App() {
   return (
-    <div className="App">
-      <Square black>
-        <Knight/>
-      </Square>
+    <div className="App"
+      style={{
+        width: '100vw',
+        height: '100vh'
+      }}
+    >
+      <Board knightPosition={[0, 3]}/>
     </div>
   );
 }
