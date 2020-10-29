@@ -18,11 +18,9 @@ export default function Knight () {
       ref={drag}
       style={{
         opacity: isDragging ? 0.5 : 1,
-        fontSize: 25,
+        fontSize: 50,
         fontWeight: 'bold',
-        cursor: 'move',
-        width: '100%',
-        height: '100%'
+        cursor: 'move'
       }}
     >
       ♘
