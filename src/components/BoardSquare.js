@@ -4,9 +4,10 @@ import { useDrop } from 'react-dnd';
 import { ItemTypes } from './Constants';
 import { moveKnight } from '../API/Game';
 import Square from './Square';
+import Overlay from './Overlay';
 
 export default function BoardSquare({ x, y, children }) {
-  const [{ isOver }, drop] = useDrop({
+  const [{ isOver, canDrop }, drop] = useDrop({
     accept: ItemTypes.KNIGHT,
     drop: () => moveKnight(x, y),
     canDrop: () => canMoveKnight(x, y),
@@ -27,20 +28,9 @@ export default function BoardSquare({ x, y, children }) {
       }}
     >
       <Square black={black}>{children}</Square>
-      {isOver && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            height: '100%',
-            width: '100%',
-            zIndex: 1,
-            opacity: 0.5,
-            backgroundColor: 'yellow',
-          }}
-        />
-      )}
+      {isOver && !canDrop && <Overlay color="red" />}
+      {!isOver && canDrop && <Overlay color="yellow" />}
+      {isOver && canDrop && <Overlay color="green" />}
     </div>
   )
 }
